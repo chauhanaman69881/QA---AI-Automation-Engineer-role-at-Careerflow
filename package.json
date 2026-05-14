@@ -1,0 +1,24 @@
+{
+  "name": "careerflow-qa-automation",
+  "version": "1.0.0",
+  "description": "Playwright automation tests for Careerflow.ai using Page Object Model",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "codegen": "playwright codegen https://careerflow.ai"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "qa"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}

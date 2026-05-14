@@ -1,0 +1,662 @@
+<testsuites id="" name="" tests="15" failures="3" skipped="0" errors="12" time="88.239599">
+<testsuite name="auth.spec.js" timestamp="2026-05-14T12:39:38.611Z" hostname="chromium" tests="5" failures="1" skipped="0" time="141.004" errors="4">
+<testcase name="User Authentication Flow › TC-001: User can successfully login with valid credentials" classname="auth.spec.js" time="13.788">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › auth.spec.js:32:3 › User Authentication Flow › TC-001: User can successfully login with valid credentials 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      35 |     
+      36 |     // Assertion: Verify login form is visible
+    > 37 |     expect(await loginPage.isElementVisible(loginPage.emailInput)).toBe(true);
+         |                                                                    ^
+      38 |     expect(await loginPage.isElementVisible(loginPage.passwordInput)).toBe(true);
+      39 |
+      40 |     // Step 2: Enter credentials
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:37:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-chromium\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="User Authentication Flow › TC-002: User cannot login with invalid credentials" classname="auth.spec.js" time="30.774">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [chromium] › auth.spec.js:58:3 › User Authentication Flow › TC-002: User cannot login with invalid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+       at ..\pages\BasePage.js:21
+
+      19 |    */
+      20 |   async fillInput(selector, text) {
+    > 21 |     await this.page.fill(selector, text);
+         |                     ^
+      22 |   }
+      23 |
+      24 |   /**
+        at LoginPage.fillInput (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:21:21)
+        at LoginPage.login (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:33:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:66:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-003: User can navigate to sign up from login page" classname="auth.spec.js" time="30.426">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [chromium] › auth.spec.js:76:3 › User Authentication Flow › TC-003: User can navigate to sign up from login page 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('a:has-text("Sign up")')
+
+
+       at ..\pages\BasePage.js:28
+
+      26 |    */
+      27 |   async click(selector) {
+    > 28 |     await this.page.click(selector);
+         |                     ^
+      29 |   }
+      30 |
+      31 |   /**
+        at LoginPage.click (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:28:21)
+        at LoginPage.clickSignUp (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:74:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:81:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-004: Login button is disabled with empty fields" classname="auth.spec.js" time="32.965">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [chromium] › auth.spec.js:87:3 › User Authentication Flow › TC-004: Login button is disabled with empty fields 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.isEnabled: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('button[type="submit"]')
+
+
+       at ..\pages\LoginPage.js:82
+
+      80 |   async isLoginButtonEnabled() {
+      81 |     const button = await this.page.locator(this.loginButton);
+    > 82 |     return await button.isEnabled();
+         |                         ^
+      83 |   }
+      84 | }
+      85 |
+        at LoginPage.isLoginButtonEnabled (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:82:25)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:92:12
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-005: User can login with remember me option checked" classname="auth.spec.js" time="33.051">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [chromium] › auth.spec.js:101:3 › User Authentication Flow › TC-005: User can login with remember me option checked 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+       at ..\pages\BasePage.js:21
+
+      19 |    */
+      20 |   async fillInput(selector, text) {
+    > 21 |     await this.page.fill(selector, text);
+         |                     ^
+      22 |   }
+      23 |
+      24 |   /**
+        at LoginPage.fillInput (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:21:21)
+        at LoginPage.loginWithRememberMe (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:42:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:109:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-chromium\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.js" timestamp="2026-05-14T12:39:38.611Z" hostname="firefox" tests="5" failures="1" skipped="0" time="134.999" errors="4">
+<testcase name="User Authentication Flow › TC-001: User can successfully login with valid credentials" classname="auth.spec.js" time="13.398">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-firefox\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-firefox\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [firefox] › auth.spec.js:32:3 › User Authentication Flow › TC-001: User can successfully login with valid credentials 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      35 |     
+      36 |     // Assertion: Verify login form is visible
+    > 37 |     expect(await loginPage.isElementVisible(loginPage.emailInput)).toBe(true);
+         |                                                                    ^
+      38 |     expect(await loginPage.isElementVisible(loginPage.passwordInput)).toBe(true);
+      39 |
+      40 |     // Step 2: Enter credentials
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:37:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-firefox\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="User Authentication Flow › TC-002: User cannot login with invalid credentials" classname="auth.spec.js" time="30.369">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-firefox\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-firefox\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [firefox] › auth.spec.js:58:3 › User Authentication Flow › TC-002: User cannot login with invalid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+       at ..\pages\BasePage.js:21
+
+      19 |    */
+      20 |   async fillInput(selector, text) {
+    > 21 |     await this.page.fill(selector, text);
+         |                     ^
+      22 |   }
+      23 |
+      24 |   /**
+        at LoginPage.fillInput (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:21:21)
+        at LoginPage.login (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:33:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:66:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-firefox\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-003: User can navigate to sign up from login page" classname="auth.spec.js" time="30.408">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-firefox\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-firefox\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [firefox] › auth.spec.js:76:3 › User Authentication Flow › TC-003: User can navigate to sign up from login page 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('a:has-text("Sign up")')
+
+
+       at ..\pages\BasePage.js:28
+
+      26 |    */
+      27 |   async click(selector) {
+    > 28 |     await this.page.click(selector);
+         |                     ^
+      29 |   }
+      30 |
+      31 |   /**
+        at LoginPage.click (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:28:21)
+        at LoginPage.clickSignUp (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:74:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:81:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-firefox\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-004: Login button is disabled with empty fields" classname="auth.spec.js" time="30.37">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-firefox\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-firefox\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [firefox] › auth.spec.js:87:3 › User Authentication Flow › TC-004: Login button is disabled with empty fields 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.isEnabled: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('button[type="submit"]')
+
+
+       at ..\pages\LoginPage.js:82
+
+      80 |   async isLoginButtonEnabled() {
+      81 |     const button = await this.page.locator(this.loginButton);
+    > 82 |     return await button.isEnabled();
+         |                         ^
+      83 |   }
+      84 | }
+      85 |
+        at LoginPage.isLoginButtonEnabled (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:82:25)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:92:12
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-firefox\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-005: User can login with remember me option checked" classname="auth.spec.js" time="30.454">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-firefox\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-firefox\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [firefox] › auth.spec.js:101:3 › User Authentication Flow › TC-005: User can login with remember me option checked 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+       at ..\pages\BasePage.js:21
+
+      19 |    */
+      20 |   async fillInput(selector, text) {
+    > 21 |     await this.page.fill(selector, text);
+         |                     ^
+      22 |   }
+      23 |
+      24 |   /**
+        at LoginPage.fillInput (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:21:21)
+        at LoginPage.loginWithRememberMe (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:42:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:109:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-firefox\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.js" timestamp="2026-05-14T12:39:38.611Z" hostname="webkit" tests="5" failures="1" skipped="0" time="141.256" errors="4">
+<testcase name="User Authentication Flow › TC-001: User can successfully login with valid credentials" classname="auth.spec.js" time="17.172">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-webkit\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-webkit\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [webkit] › auth.spec.js:32:3 › User Authentication Flow › TC-001: User can successfully login with valid credentials 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      35 |     
+      36 |     // Assertion: Verify login form is visible
+    > 37 |     expect(await loginPage.isElementVisible(loginPage.emailInput)).toBe(true);
+         |                                                                    ^
+      38 |     expect(await loginPage.isElementVisible(loginPage.passwordInput)).toBe(true);
+      39 |
+      40 |     // Step 2: Enter credentials
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:37:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-28488-ogin-with-valid-credentials-webkit\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="User Authentication Flow › TC-002: User cannot login with invalid credentials" classname="auth.spec.js" time="31.171">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-webkit\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-webkit\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [webkit] › auth.spec.js:58:3 › User Authentication Flow › TC-002: User cannot login with invalid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+       at ..\pages\BasePage.js:21
+
+      19 |    */
+      20 |   async fillInput(selector, text) {
+    > 21 |     await this.page.fill(selector, text);
+         |                     ^
+      22 |   }
+      23 |
+      24 |   /**
+        at LoginPage.fillInput (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:21:21)
+        at LoginPage.login (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:33:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:66:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-fd747-in-with-invalid-credentials-webkit\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-003: User can navigate to sign up from login page" classname="auth.spec.js" time="31.256">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-webkit\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-webkit\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [webkit] › auth.spec.js:76:3 › User Authentication Flow › TC-003: User can navigate to sign up from login page 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('a:has-text("Sign up")')
+
+
+       at ..\pages\BasePage.js:28
+
+      26 |    */
+      27 |   async click(selector) {
+    > 28 |     await this.page.click(selector);
+         |                     ^
+      29 |   }
+      30 |
+      31 |   /**
+        at LoginPage.click (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:28:21)
+        at LoginPage.clickSignUp (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:74:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:81:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-60b0e--to-sign-up-from-login-page-webkit\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-004: Login button is disabled with empty fields" classname="auth.spec.js" time="31.032">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-webkit\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-webkit\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [webkit] › auth.spec.js:87:3 › User Authentication Flow › TC-004: Login button is disabled with empty fields 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.isEnabled: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('button[type="submit"]')
+
+
+       at ..\pages\LoginPage.js:82
+
+      80 |   async isLoginButtonEnabled() {
+      81 |     const button = await this.page.locator(this.loginButton);
+    > 82 |     return await button.isEnabled();
+         |                         ^
+      83 |   }
+      84 | }
+      85 |
+        at LoginPage.isLoginButtonEnabled (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:82:25)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:92:12
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-05b3a--disabled-with-empty-fields-webkit\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="User Authentication Flow › TC-005: User can login with remember me option checked" classname="auth.spec.js" time="30.625">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-webkit\video.webm]]
+
+[[ATTACHMENT|test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-webkit\error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [webkit] › auth.spec.js:101:3 › User Authentication Flow › TC-005: User can login with remember me option checked 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+       at ..\pages\BasePage.js:21
+
+      19 |    */
+      20 |   async fillInput(selector, text) {
+    > 21 |     await this.page.fill(selector, text);
+         |                     ^
+      22 |   }
+      23 |
+      24 |   /**
+        at LoginPage.fillInput (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\BasePage.js:21:21)
+        at LoginPage.loginWithRememberMe (C:\Users\aman\OneDrive\Desktop\Careerflow\pages\LoginPage.js:42:16)
+        at C:\Users\aman\OneDrive\Desktop\Careerflow\tests\auth.spec.js:109:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-User-Authentication-F-959e5--remember-me-option-checked-webkit\error-context.md
+]]>
+</error>
+</testcase>
+</testsuite>
+</testsuites>
