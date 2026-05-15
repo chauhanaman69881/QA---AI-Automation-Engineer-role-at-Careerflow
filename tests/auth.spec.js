@@ -1,6 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 const { DashboardPage } = require('../pages/DashboardPage');
+const { getCredentials } = require('../config/credentials.config');
 
 /**
  * Authentication Test Suite - End-to-End Login Flow
@@ -34,15 +35,13 @@ test.describe('User Authentication Flow', () => {
     await loginPage.navigateToLogin();
     
     // Assertion: Verify login form is visible
-    expect(await loginPage.isElementVisible(loginPage.emailInput)).toBe(true);
-    expect(await loginPage.isElementVisible(loginPage.passwordInput)).toBe(true);
+    expect(await loginPage.emailInput().isVisible()).toBe(true);
+    expect(await loginPage.passwordInput().isVisible()).toBe(true);
 
-    // Step 2: Enter credentials
-    // NOTE: In real scenarios, use environment variables or secure credential management
-    const testEmail = 'test@careerflow.ai';
-    const testPassword = 'TestPassword123!';
+    // Step 2: Enter credentials (loaded from environment variables)
+    const { validEmail, validPassword } = getCredentials();
     
-    await loginPage.login(testEmail, testPassword);
+    await loginPage.login(validEmail, validPassword);
 
     // Step 3: Wait for dashboard to load
     await dashboardPage.waitForDashboard();
@@ -60,10 +59,9 @@ test.describe('User Authentication Flow', () => {
     await loginPage.navigateToLogin();
 
     // Step 2: Attempt login with invalid password
-    const testEmail = 'test@careerflow.ai';
-    const invalidPassword = 'WrongPassword123!';
+    const { validEmail, invalidPassword } = getCredentials();
     
-    await loginPage.login(testEmail, invalidPassword);
+    await loginPage.login(validEmail, invalidPassword);
 
     // Assertion: Error message should be visible
     expect(await loginPage.isErrorMessageVisible()).toBe(true);
@@ -92,7 +90,8 @@ test.describe('User Authentication Flow', () => {
     expect(await loginPage.isLoginButtonEnabled()).toBe(false);
 
     // Step 2: Fill only email
-    await loginPage.fillInput(loginPage.emailInput, 'test@careerflow.ai');
+    const { validEmail } = getCredentials();
+    await loginPage.emailInput().fill(validEmail);
 
     // Assertion: Login button should still be disabled
     expect(await loginPage.isLoginButtonEnabled()).toBe(false);
@@ -103,10 +102,9 @@ test.describe('User Authentication Flow', () => {
     await loginPage.navigateToLogin();
 
     // Step 2: Login with remember me option
-    const testEmail = 'test@careerflow.ai';
-    const testPassword = 'TestPassword123!';
+    const { validEmail, validPassword } = getCredentials();
     
-    await loginPage.loginWithRememberMe(testEmail, testPassword);
+    await loginPage.loginWithRememberMe(validEmail, validPassword);
 
     // Step 3: Wait for dashboard
     await dashboardPage.waitForDashboard();

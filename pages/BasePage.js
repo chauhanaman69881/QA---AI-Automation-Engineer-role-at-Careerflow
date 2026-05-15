@@ -58,7 +58,7 @@ class BasePage {
    * Wait for page to load completely
    */
   async waitForPageLoad() {
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('load');
   }
 }
 

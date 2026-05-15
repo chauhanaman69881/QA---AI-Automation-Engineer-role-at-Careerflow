@@ -1,4 +1,5 @@
 const { BasePage } = require('./BasePage');
+const { URLS } = require('../config/urls.config');
 
 /**
  * LoginPage - Page Object Model for login page
@@ -8,21 +9,20 @@ class LoginPage extends BasePage {
   constructor(page) {
     super(page);
 
-    // Selectors
-    this.emailInput = 'input[name="email"]';
-    this.passwordInput = 'input[type="password"]';
-    this.loginButton = 'button[type="submit"]';
-    this.errorMessage = '[data-testid="error-message"]';
-    this.forgotPasswordLink = 'a:has-text("Forgot password")';
-    this.signupLink = 'a:has-text("Sign up")';
-    this.rememberMeCheckbox = 'input[type="checkbox"]';
+    // Selectors using Playwright accessibility roles (best practice)
+    this.emailInput = () => this.page.getByRole('textbox', { name: /example@email.com/i });
+    this.passwordInput = () => this.page.getByRole('textbox', { name: /password/i });
+    this.loginButton = () => this.page.getByRole('button', { name: /log in|login/i });
+    this.forgotPasswordLink = () => this.page.getByRole('button', { name: /forgot password/i });
+    this.signupTab = () => this.page.getByRole('tab', { name: 'Sign Up' });
+    this.rememberMeCheckbox = () => this.page.getByRole('checkbox');
   }
 
   /**
-   * Navigate to login page
+   * Navigate to login page using centralized URL config
    */
   async navigateToLogin() {
-    await this.goto('/login');
+    await this.goto(URLS.login);
     await this.waitForPageLoad();
   }
 
@@ -30,56 +30,54 @@ class LoginPage extends BasePage {
    * Perform complete login flow with email and password
    */
   async login(email, password) {
-    await this.fillInput(this.emailInput, email);
-    await this.fillInput(this.passwordInput, password);
-    await this.click(this.loginButton);
+    await this.emailInput().fill(email);
+    await this.passwordInput().fill(password);
+    await this.loginButton().click();
   }
 
   /**
    * Login with email, password, and remember me option
    */
   async loginWithRememberMe(email, password) {
-    await this.fillInput(this.emailInput, email);
-    await this.fillInput(this.passwordInput, password);
-    await this.click(this.rememberMeCheckbox);
-    await this.click(this.loginButton);
+    await this.emailInput().fill(email);
+    await this.passwordInput().fill(password);
+    await this.rememberMeCheckbox().click();
+    await this.loginButton().click();
   }
 
   /**
    * Get error message text
    */
   async getErrorMessage() {
-    await this.waitForElement(this.errorMessage);
-    return await this.getText(this.errorMessage);
+    return await this.page.locator('[data-testid="error-message"]').textContent();
   }
 
   /**
    * Check if error message is visible
    */
   async isErrorMessageVisible() {
-    return await this.isElementVisible(this.errorMessage);
+    return await this.page.locator('[data-testid="error-message"]').isVisible({ timeout: 5000 }).catch(() => false);
   }
 
   /**
    * Click on forgot password link
    */
   async clickForgotPassword() {
-    await this.click(this.forgotPasswordLink);
+    await this.forgotPasswordLink().click();
   }
 
   /**
    * Click on sign up link
    */
   async clickSignUp() {
-    await this.click(this.signupLink);
+    await this.signupTab().click();
   }
 
   /**
    * Check if login button is enabled
    */
   async isLoginButtonEnabled() {
-    const button = await this.page.locator(this.loginButton);
-    return await button.isEnabled();
+    return await this.loginButton().isEnabled();
   }
 }
 
