@@ -1,7 +1,8 @@
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/LoginPage');
 const { DashboardPage } = require('../pages/DashboardPage');
-const { getCredentials } = require('../config/credentials.config');
+const { getLoginTestData } = require('./data/loginTestData');
+const { generateLoginCredentials } = require('./utils/dataGenerator');
 
 /**
  * Authentication Test Suite - End-to-End Login Flow
@@ -11,13 +12,11 @@ const { getCredentials } = require('../config/credentials.config');
  * - More readable and maintainable
  * - Less brittle (selectors are centralized)
  * - Easier to reuse across multiple test files
- * 
- * Flow tested:
- * 1. User navigates to login page
- * 2. User enters valid credentials
- * 3. User successfully logs in
- * 4. User is redirected to dashboard
- * 5. User can verify their logged-in status
+ *
+ * Data-driven approach:
+ * - Generates unique test data using Faker.js for each test run
+ * - Tests both valid and invalid login scenarios
+ * - Validates form field behavior and error handling
  */
 
 test.describe('User Authentication Flow', () => {
@@ -30,48 +29,41 @@ test.describe('User Authentication Flow', () => {
     dashboardPage = new DashboardPage(page);
   });
 
-  test('TC-001: User can successfully login with valid credentials', async ({ page }) => {
-    // Step 1: Navigate to login page
-    await loginPage.navigateToLogin();
-    
-    // Assertion: Verify login form is visible
-    expect(await loginPage.emailInput().isVisible()).toBe(true);
-    expect(await loginPage.passwordInput().isVisible()).toBe(true);
+  // Generate unique test data for this test run
+  const loginTestData = getLoginTestData();
 
-    // Step 2: Enter credentials (loaded from environment variables)
-    const { validEmail, validPassword } = getCredentials();
-    
-    await loginPage.login(validEmail, validPassword);
+  for (const scenario of loginTestData) {
+    test(`${scenario.id}: ${scenario.title}`, async ({ page }) => {
+      await loginPage.navigateToLogin();
+      expect(await loginPage.emailInput().isVisible()).toBe(true);
+      expect(await loginPage.passwordInput().isVisible()).toBe(true);
 
-    // Step 3: Wait for dashboard to load
-    await dashboardPage.waitForDashboard();
+      // Use generated data directly from scenario
+      const email = scenario.email;
+      const password = scenario.password;
 
-    // Assertion: Verify user is logged in by checking dashboard elements
-    expect(await dashboardPage.isUserLoggedIn()).toBe(true);
-    
-    // Assertion: Verify greeting message contains user context
-    const greeting = await dashboardPage.getUserGreeting();
-    expect(greeting).toBeTruthy();
-  });
+      if (scenario.action === 'checkButtonDisabled') {
+        if (email) await loginPage.emailInput().fill(email);
+        if (password) await loginPage.passwordInput().fill(password);
+        expect(await loginPage.isLoginButtonEnabled()).toBe(false);
+      } else {
+        await loginPage.login(email, password);
 
-  test('TC-002: User cannot login with invalid credentials', async ({ page }) => {
-    // Step 1: Navigate to login page
-    await loginPage.navigateToLogin();
+        if (scenario.expectSuccess) {
+          await dashboardPage.waitForDashboard();
+          expect(await dashboardPage.isUserLoggedIn()).toBe(true);
+          const greeting = await dashboardPage.getUserGreeting();
+          expect(greeting).toBeTruthy();
+        } else {
+          expect(await loginPage.isErrorMessageVisible()).toBe(true);
+          const errorText = await loginPage.getErrorMessage();
+          expect(errorText).toContain(scenario.expectedError);
+        }
+      }
+    });
+  }
 
-    // Step 2: Attempt login with invalid password
-    const { validEmail, invalidPassword } = getCredentials();
-    
-    await loginPage.login(validEmail, invalidPassword);
-
-    // Assertion: Error message should be visible
-    expect(await loginPage.isErrorMessageVisible()).toBe(true);
-    
-    // Assertion: Verify error message content
-    const errorText = await loginPage.getErrorMessage();
-    expect(errorText).toContain('Invalid credentials');
-  });
-
-  test('TC-003: User can navigate to sign up from login page', async ({ page }) => {
+  test('TC-007: User can navigate to sign up from login page', async ({ page }) => {
     // Step 1: Navigate to login page
     await loginPage.navigateToLogin();
 
@@ -82,29 +74,14 @@ test.describe('User Authentication Flow', () => {
     expect(page.url()).toContain('/signup');
   });
 
-  test('TC-004: Login button is disabled with empty fields', async ({ page }) => {
+  test('TC-008: User can login with remember me option checked', async ({ page }) => {
     // Step 1: Navigate to login page
     await loginPage.navigateToLogin();
 
-    // Assertion: Login button should be disabled initially
-    expect(await loginPage.isLoginButtonEnabled()).toBe(false);
-
-    // Step 2: Fill only email
-    const { validEmail } = getCredentials();
-    await loginPage.emailInput().fill(validEmail);
-
-    // Assertion: Login button should still be disabled
-    expect(await loginPage.isLoginButtonEnabled()).toBe(false);
-  });
-
-  test('TC-005: User can login with remember me option checked', async ({ page }) => {
-    // Step 1: Navigate to login page
-    await loginPage.navigateToLogin();
-
-    // Step 2: Login with remember me option
-    const { validEmail, validPassword } = getCredentials();
+    // Step 2: Login with remember me option using generated credentials
+    const { email, password } = generateLoginCredentials();
     
-    await loginPage.loginWithRememberMe(validEmail, validPassword);
+    await loginPage.loginWithRememberMe(email, password);
 
     // Step 3: Wait for dashboard
     await dashboardPage.waitForDashboard();

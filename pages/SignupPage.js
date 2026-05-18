@@ -48,7 +48,7 @@ class SignupPage extends BasePage {
     await this.lastNameInput().fill(lastName);
     await this.emailInput().fill(email);
     await this.passwordInput().fill(password);
-    
+    await this.page.getByRole('textbox', { name: /confirm password/i }).fill(confirmPassword);
   }
 
   /**

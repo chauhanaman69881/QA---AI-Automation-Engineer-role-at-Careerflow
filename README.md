@@ -1,103 +1,217 @@
-# Careerflow QA Automation - AI-Augmented QA Engineer Assignment
+# Careerflow QA Automation - Careerflow.ai
 
-**Role:** AI-Augmented QA Engineer  
-**Assignment Timeline:** 2–3 days  
-**Submission Date:** May 14, 2026  
-**Status:** ✅ Complete - All 4 Tasks Delivered
+## Overview
 
----
+This repository contains the Careerflow QA automation project built with **Playwright** and the **Page Object Model** pattern. It supports data-driven authentication and signup flows with reusable page objects, centralized configuration, and environment-aware test execution.
 
-## 📑 Table of Contents
+### What’s included
 
-1. [Project Overview](#-project-overview)
-2. [Repository Structure](#-repository-structure)
-3. [Task 1: UI Automation](#task-1-ui-automation--playwright--pom-)
-4. [Task 2: Test Scenario Design](#task-2-test-scenario-design-ai-mock-interview-platform-)
-5. [Task 3: AI Tools Usage](#task-3-ai-tools-usage-)
-6. [Task 4: GitHub Integration](#task-4-github-integration--documentation-)
-7. [Quick Start Guide](#-quick-start-guide)
-8. [Running Tests](#-running-tests)
-9. [Test Execution Examples](#-test-execution-examples)
-10. [Testing Documentation & Best Practices](#-testing-documentation--best-practices)
-11. [Test Plan & Test Cases](#-test-plan--test-cases)
-12. [AI Feedback Quality Testing](#-ai-feedback-quality-testing)
-13. [AI Tools Documentation](#-ai-tools-documentation)
-14. [Troubleshooting](#-troubleshooting)
-15. [Assignment Evaluation](#-assignment-evaluation)
-16. [Key QA Concepts](#-key-qa-engineering-concepts)
-17. [Project Statistics](#-project-statistics)
+- ✅ **Playwright test automation** for login and signup flows
+- ✅ **Page Object Model** with reusable `BasePage`, `LoginPage`, `DashboardPage`, and `SignupPage`
+- ✅ **Faker.js integration** for unique test data generation
+- ✅ **Centralized configuration** in `config/constants.js`
+- ✅ **Environment variables** support via `.env`
+- ✅ **Multi-browser execution** with Chromium, Firefox, and WebKit
+- ✅ **HTML, JUnit, and list reporters** configured
 
 ---
 
-## 🎯 Project Overview
-
-This repository contains the complete submission for the **Careerflow AI-Augmented QA Engineer** assignment. It demonstrates:
-
-1. ✅ **UI Automation** - Playwright tests with Page Object Model pattern
-2. ✅ **Test Scenario Design** - Comprehensive test plan for AI Mock Interview Platform
-3. ✅ **AI Tools Usage** - Documented Claude integration throughout the assignment
-4. ✅ **GitHub Integration** - CI/CD pipeline with automated test execution
-
-### Key Highlights
-
-- **17 Test Cases** covering functional, integration, edge cases, and AI quality testing
-- **Page Object Model** architecture for maintainable, scalable automation
-- **GitHub Actions CI/CD** for automated testing on push/PR
-- **Production-Ready Code** with TypeScript, proper async handling, and comprehensive documentation
-- **AI Tools Integration** with honest reflection on AI-assisted QA workflows
-
----
-
-## 📁 Repository Structure
+## Repository Structure
 
 ```
-careerflow-qa-automation/
-├── README.md                                 # This file - complete documentation
-├── package.json                              # Dependencies & npm scripts
-├── playwright.config.ts                      # Playwright configuration
-├── tsconfig.json                             # TypeScript configuration
-│
-├── pages/                                    # Page Object Model
-│   ├── BasePage.ts                          # Base class with common methods
-│   ├── LoginPage.ts                         # Login page object
-│   └── DashboardPage.ts                     # Dashboard page object
-│
-├── tests/                                    # Test files
-│   └── auth.spec.ts                         # Authentication tests (5 test cases)
-│
+/ (root)
+├── README.md
+├── package.json
+├── playwright.config.js
+├── package-lock.json
+├── .env.example
+├── config/
+│   ├── constants.js
+│   ├── credentials.config.js
+│   └── urls.config.js
+├── pages/
+│   ├── BasePage.js
+│   ├── LoginPage.js
+│   ├── DashboardPage.js
+│   └── SignupPage.js
+├── tests/
+│   ├── auth.spec.js
+│   ├── signup.spec.js
+│   ├── data/
+│   │   ├── loginTestData.js
+│   │   └── signupTestData.js
+│   └── utils/
+│       └── dataGenerator.js
+├── playwright-report/
+├── test-results/
 ├── .github/
 │   └── workflows/
-│       └── playwright.yml                    # GitHub Actions CI/CD pipeline
-│
-└── .gitignore                               # Git ignore rules
+└── AI_TOOLS_USAGE.md
 ```
 
 ---
 
-## Task 1: UI Automation ✅ (Playwright + POM)
+## Key Components
 
-### Overview
+### `config/`
+- `constants.js` - centralized timeouts, validation rules, selectors, and error messages
+- `urls.config.js` - base URL and route definitions
+- `credentials.config.js` - deprecated credential loader with migration notes
 
-**Deliverables:**
-- ✅ Automated login flow with 5 test cases
-- ✅ Page Object Model pattern with `BasePage`, `LoginPage`, `DashboardPage`
-- ✅ No hardcoded waits - uses Playwright's auto-waiting mechanisms
-- ✅ Meaningful assertions at each step
-- ✅ GitHub Actions CI/CD workflow included
+### `pages/`
+- `BasePage.js` - shared page interactions, waits, and helper methods
+- `LoginPage.js` - login page actions and selectors
+- `DashboardPage.js` - dashboard verification methods
+- `SignupPage.js` - signup page actions and field interactions
 
-### Why This Approach Matters
+### `tests/`
+- `auth.spec.js` - data-driven login tests, remember-me test, and signup navigation verification
+- `signup.spec.js` - data-driven signup tests and login navigation verification
+- `tests/data/` - scenario definitions for login and signup tests
+- `tests/utils/dataGenerator.js` - Faker.js-based generators with validation
 
-The Page Object Model pattern provides maintainability and scalability. By centralizing selectors and methods in page objects, tests become:
-- **Readable** - Tests read like documentation
-- **Maintainable** - Selector changes only require updating page objects
-- **Reusable** - Common methods shared across all tests
-- **Scalable** - Easy to add new pages and test scenarios
+---
 
-### Test Cases
+## Prerequisites
 
+- Node.js 18.x or newer
+- `npm` package manager
+- `npx playwright install` to install browser binaries
+
+---
+
+## Setup
+
+1. Install dependencies:
+
+```bash
+npm install
 ```
-TC-001: User can successfully login with valid credentials
-TC-002: User cannot login with invalid credentials
+
+2. Install Playwright browsers:
+
+```bash
+npx playwright install
+```
+
+3. Create a `.env` file from the example:
+
+```bash
+cp .env.example .env
+```
+
+4. Update `.env` values if needed.
+
+---
+
+## Running Tests
+
+### Run the full suite
+
+```bash
+npm test
+```
+
+### Run tests in headed mode
+
+```bash
+npm run test:headed
+```
+
+### Run tests with Playwright UI
+
+```bash
+npm run test:ui
+```
+
+### Run a specific test file
+
+```bash
+npx playwright test tests/auth.spec.js
+```
+
+### List available tests
+
+```bash
+npm test -- --list
+```
+
+---
+
+## Test Coverage
+
+Current suite includes:
+- **8 login scenarios** in `tests/auth.spec.js`
+- **7 signup scenarios** in `tests/signup.spec.js`
+- **45 total test cases** when executed across Chromium, Firefox, and WebKit
+
+### Example scenarios
+- Valid login
+- Invalid password
+- Invalid email format
+- Missing password or email
+- Signup with valid data
+- Signup with password mismatch
+- Signup without accepting terms
+- Navigation between login and signup
+
+---
+
+## How It Works
+
+The project follows a clean **Page Object Model** design.
+
+### Page objects encapsulate:
+- Selectors
+- Navigation helpers
+- Form interactions
+- Wait strategies
+
+### Test data is managed via:
+- `tests/data/loginTestData.js`
+- `tests/data/signupTestData.js`
+- `tests/utils/dataGenerator.js` for Faker-powered data generation
+
+### Configuration is centralized in:
+- `config/constants.js`
+- `config/urls.config.js`
+
+---
+
+## Notes
+
+- `.env` is not tracked by Git. Use `.env.example` as the template.
+- The repository uses Playwright's built-in waiting and assertions.
+- `credentials.config.js` remains for backward compatibility and is marked as deprecated.
+
+---
+
+## Recommended Workflow
+
+1. Install dependencies
+2. Copy `.env.example` to `.env`
+3. Run `npx playwright install`
+4. Execute `npm test`
+5. Review `playwright-report/` for HTML results
+
+---
+
+## Useful Commands
+
+- `npm install`
+- `npx playwright install`
+- `npm test`
+- `npm run test:headed`
+- `npm run test:ui`
+- `npm test -- --list`
+
+---
+
+## Contact
+
+For questions or enhancements, review the page object files in `pages/` and test definitions in `tests/`.
+
+
 TC-003: User can navigate to sign up from login page
 TC-004: Login button is disabled with empty fields
 TC-005: User can login with remember me option checked

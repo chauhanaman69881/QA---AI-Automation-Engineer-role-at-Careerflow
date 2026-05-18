@@ -40,5 +40,10 @@ module.exports = defineConfig({
     },
   ],
 
-  webServer: undefined, // Set this if you have a local dev server
+  // Uncomment below to run tests against a local dev server
+  // webServer: {
+  //   command: 'npm run dev',
+  //   port: 3000,
+  //   reuseExistingServer: !process.env.CI,
+  // },
 });
