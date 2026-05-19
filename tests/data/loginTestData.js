@@ -34,7 +34,8 @@ const getLoginTestData = () => {
       password: generatePassword(), // Different password for same email
       action: 'login',
       expectSuccess: false,
-      expectedError: 'Invalid credentials',
+      errorType: 'not_found',
+      expectedError: 'User not found',
       description: 'Wrong password should trigger error message',
     },
     {
@@ -44,7 +45,8 @@ const getLoginTestData = () => {
       password: validCredentials.password,
       action: 'login',
       expectSuccess: false,
-      expectedError: 'Invalid credentials',
+      errorType: 'format',
+      expectedError: 'Please enter a valid email address',
       description: 'Malformed email should fail validation',
     },
     {

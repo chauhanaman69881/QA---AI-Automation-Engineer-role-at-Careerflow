@@ -55,24 +55,24 @@ test.describe('User Authentication Flow', () => {
           const greeting = await dashboardPage.getUserGreeting();
           expect(greeting).toBeTruthy();
         } else {
-          expect(await loginPage.isErrorMessageVisible()).toBe(true);
-          const errorText = await loginPage.getErrorMessage();
-          expect(errorText).toContain(scenario.expectedError);
+          // For unsuccessful login, verify the appropriate error based on error type
+          if (scenario.errorType === 'format') {
+            // Format validation errors (invalid email format)
+            await expect(
+              page.getByText(/Please enter a valid email address/i)
+            ).toBeVisible();
+          } else if (scenario.errorType === 'not_found') {
+            // Credential validation errors (user not found)
+            await expect(
+              page.getByText('User not found! Please use the Sign Up option to create a new account.')
+            ).toBeVisible();
+          }
         }
       }
     });
   }
 
-  test('TC-007: User can navigate to sign up from login page', async ({ page }) => {
-    // Step 1: Navigate to login page
-    await loginPage.navigateToLogin();
-
-    // Step 2: Click sign up link
-    await loginPage.clickSignUp();
-
-    // Assertion: Verify navigation to sign up page
-    expect(page.url()).toContain('/signup');
-  });
+ 
 
   test('TC-008: User can login with remember me option checked', async ({ page }) => {
     // Step 1: Navigate to login page

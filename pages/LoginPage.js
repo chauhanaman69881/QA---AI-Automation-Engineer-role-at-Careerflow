@@ -85,6 +85,34 @@ class LoginPage extends BasePage {
   }
 
   /**
+   * Check for specific "User not found" error message
+   */
+  async isUserNotFoundErrorVisible() {
+    return await this.page.getByText('User not found! Please use the Sign Up option to create a new account.').isVisible();
+  }
+
+  /**
+   * Wait for and verify "User not found" error message is visible
+   */
+  async expectUserNotFoundError() {
+    await this.page.getByText('User not found! Please use the Sign Up option to create a new account.').waitFor({ state: 'visible' });
+  }
+
+  /**
+   * Check for email format validation error
+   */
+  async isEmailFormatErrorVisible() {
+    return await this.page.getByText(/Please enter a valid email address/i).isVisible();
+  }
+
+  /**
+   * Wait for and verify email format error is visible
+   */
+  async expectEmailFormatError() {
+    await this.page.getByText(/Please enter a valid email address/i).waitFor({ state: 'visible' });
+  }
+
+  /**
    * Convenience getter for email input
    */
   emailInput() {

@@ -1,39 +1,261 @@
-<testsuites id="" name="" tests="45" failures="0" skipped="45" errors="0" time="0.24423299999999995">
-<testsuite name="auth.spec.js" timestamp="2026-05-18T17:22:52.510Z" hostname="chromium" tests="8" failures="0" skipped="8" time="0" errors="0">
-<testcase name="User Authentication Flow › TC-001: Login succeeds with valid credentials" classname="auth.spec.js">
-<skipped>
-</skipped>
+<testsuites id="" name="" tests="45" failures="5" skipped="38" errors="1" time="75.362819">
+<testsuite name="auth.spec.js" timestamp="2026-05-19T16:49:01.511Z" hostname="chromium" tests="8" failures="5" skipped="1" time="66.969" errors="1">
+<testcase name="User Authentication Flow › TC-001: Login succeeds with valid credentials" classname="auth.spec.js" time="31.604">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/auth-User-Authentication-F-50ec1-eeds-with-valid-credentials-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-50ec1-eeds-with-valid-credentials-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-50ec1-eeds-with-valid-credentials-chromium/error-context.md]]
+]]>
+</system-out>
+<error message="Test timeout of 30000ms exceeded." type="Error">
+<![CDATA[  [chromium] › auth.spec.js:36:5 › User Authentication Flow › TC-001: Login succeeds with valid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="user-greeting"]') to be visible
+
+
+       at ../pages/BasePage.js:51
+
+      49 |   async waitForElement(selector, timeout = TIMEOUTS.MEDIUM) {
+      50 |     if (!selector) throw new Error('Selector cannot be empty');
+    > 51 |     await this.page.waitForSelector(selector, { timeout });
+         |                     ^
+      52 |   }
+      53 |
+      54 |   /**
+        at DashboardPage.waitForElement (/workspaces/QA---AI-Automation-Engineer-role-at-Careerflow/pages/BasePage.js:51:21)
+        at DashboardPage.waitForDashboard (/workspaces/QA---AI-Automation-Engineer-role-at-Careerflow/pages/DashboardPage.js:25:16)
+        at /workspaces/QA---AI-Automation-Engineer-role-at-Careerflow/tests/auth.spec.js:53:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-50ec1-eeds-with-valid-credentials-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-50ec1-eeds-with-valid-credentials-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-User-Authentication-F-50ec1-eeds-with-valid-credentials-chromium/error-context.md
+]]>
+</error>
 </testcase>
-<testcase name="User Authentication Flow › TC-002: Login fails with invalid password" classname="auth.spec.js">
-<skipped>
-</skipped>
+<testcase name="User Authentication Flow › TC-002: Login fails with invalid password" classname="auth.spec.js" time="7.095">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/auth-User-Authentication-F-3882b-fails-with-invalid-password-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-3882b-fails-with-invalid-password-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-3882b-fails-with-invalid-password-chromium/error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [chromium] › auth.spec.js:36:5 › User Authentication Flow › TC-002: Login fails with invalid password 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('User not found! Please use the Sign Up option to create a new account.')
+    Expected: visible
+    Error: strict mode violation: getByText('User not found! Please use the Sign Up option to create a new account.') resolved to 2 elements:
+        1) <div role="status" aria-live="polite" aria-atomic="true" id="a11y-message-live-region">User not found! Please use the Sign Up option to …</div> aka locator('#a11y-message-live-region')
+        2) <span>User not found! Please use the Sign Up option to …</span> aka locator('span').filter({ hasText: 'User not found! Please use' })
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('User not found! Please use the Sign Up option to create a new account.')
+
+
+      66 |             await expect(
+      67 |               page.getByText('User not found! Please use the Sign Up option to create a new account.')
+    > 68 |             ).toBeVisible();
+         |               ^
+      69 |           }
+      70 |         }
+      71 |       }
+        at /workspaces/QA---AI-Automation-Engineer-role-at-Careerflow/tests/auth.spec.js:68:15
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-3882b-fails-with-invalid-password-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-3882b-fails-with-invalid-password-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-User-Authentication-F-3882b-fails-with-invalid-password-chromium/error-context.md
+]]>
+</failure>
 </testcase>
-<testcase name="User Authentication Flow › TC-003: Login fails with invalid email format" classname="auth.spec.js">
-<skipped>
-</skipped>
+<testcase name="User Authentication Flow › TC-003: Login fails with invalid email format" classname="auth.spec.js" time="5.193">
 </testcase>
-<testcase name="User Authentication Flow › TC-004: Login button stays disabled when password is empty" classname="auth.spec.js">
-<skipped>
-</skipped>
+<testcase name="User Authentication Flow › TC-004: Login button stays disabled when password is empty" classname="auth.spec.js" time="4.209">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/auth-User-Authentication-F-889bb-bled-when-password-is-empty-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-889bb-bled-when-password-is-empty-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-889bb-bled-when-password-is-empty-chromium/error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › auth.spec.js:36:5 › User Authentication Flow › TC-004: Login button stays disabled when password is empty 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      46 |         if (email) await loginPage.emailInput().fill(email);
+      47 |         if (password) await loginPage.passwordInput().fill(password);
+    > 48 |         expect(await loginPage.isLoginButtonEnabled()).toBe(false);
+         |                                                        ^
+      49 |       } else {
+      50 |         await loginPage.login(email, password);
+      51 |
+        at /workspaces/QA---AI-Automation-Engineer-role-at-Careerflow/tests/auth.spec.js:48:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-889bb-bled-when-password-is-empty-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-889bb-bled-when-password-is-empty-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-User-Authentication-F-889bb-bled-when-password-is-empty-chromium/error-context.md
+]]>
+</failure>
 </testcase>
-<testcase name="User Authentication Flow › TC-005: Login button stays disabled when email is empty" classname="auth.spec.js">
-<skipped>
-</skipped>
+<testcase name="User Authentication Flow › TC-005: Login button stays disabled when email is empty" classname="auth.spec.js" time="4.347">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/auth-User-Authentication-F-16e62-isabled-when-email-is-empty-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-16e62-isabled-when-email-is-empty-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-16e62-isabled-when-email-is-empty-chromium/error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › auth.spec.js:36:5 › User Authentication Flow › TC-005: Login button stays disabled when email is empty 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      46 |         if (email) await loginPage.emailInput().fill(email);
+      47 |         if (password) await loginPage.passwordInput().fill(password);
+    > 48 |         expect(await loginPage.isLoginButtonEnabled()).toBe(false);
+         |                                                        ^
+      49 |       } else {
+      50 |         await loginPage.login(email, password);
+      51 |
+        at /workspaces/QA---AI-Automation-Engineer-role-at-Careerflow/tests/auth.spec.js:48:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-16e62-isabled-when-email-is-empty-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-16e62-isabled-when-email-is-empty-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-User-Authentication-F-16e62-isabled-when-email-is-empty-chromium/error-context.md
+]]>
+</failure>
 </testcase>
-<testcase name="User Authentication Flow › TC-006: Login button stays disabled with both fields empty" classname="auth.spec.js">
-<skipped>
-</skipped>
+<testcase name="User Authentication Flow › TC-006: Login button stays disabled with both fields empty" classname="auth.spec.js" time="4.168">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/auth-User-Authentication-F-78b38-bled-with-both-fields-empty-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-78b38-bled-with-both-fields-empty-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-78b38-bled-with-both-fields-empty-chromium/error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › auth.spec.js:36:5 › User Authentication Flow › TC-006: Login button stays disabled with both fields empty 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      46 |         if (email) await loginPage.emailInput().fill(email);
+      47 |         if (password) await loginPage.passwordInput().fill(password);
+    > 48 |         expect(await loginPage.isLoginButtonEnabled()).toBe(false);
+         |                                                        ^
+      49 |       } else {
+      50 |         await loginPage.login(email, password);
+      51 |
+        at /workspaces/QA---AI-Automation-Engineer-role-at-Careerflow/tests/auth.spec.js:48:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-78b38-bled-with-both-fields-empty-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-78b38-bled-with-both-fields-empty-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-User-Authentication-F-78b38-bled-with-both-fields-empty-chromium/error-context.md
+]]>
+</failure>
 </testcase>
-<testcase name="User Authentication Flow › TC-007: User can navigate to sign up from login page" classname="auth.spec.js">
-<skipped>
-</skipped>
+<testcase name="User Authentication Flow › TC-007: User can navigate to sign up from login page" classname="auth.spec.js" time="4.925">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/auth-User-Authentication-F-66e27--to-sign-up-from-login-page-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-66e27--to-sign-up-from-login-page-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/auth-User-Authentication-F-66e27--to-sign-up-from-login-page-chromium/error-context.md]]
+]]>
+</system-out>
+<failure message="expect(received).toContain(expected) // indexOf" type="expect.toContain">
+<![CDATA[  [chromium] › auth.spec.js:75:3 › User Authentication Flow › TC-007: User can navigate to sign up from login page 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "/signup"
+    Received string:    "https://app.careerflow.ai/login"
+
+      81 |
+      82 |     // Assertion: Verify navigation to sign up page
+    > 83 |     expect(page.url()).toContain('/signup');
+         |                        ^
+      84 |   });
+      85 |
+      86 |   test('TC-008: User can login with remember me option checked', async ({ page }) => {
+        at /workspaces/QA---AI-Automation-Engineer-role-at-Careerflow/tests/auth.spec.js:83:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-66e27--to-sign-up-from-login-page-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-User-Authentication-F-66e27--to-sign-up-from-login-page-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-User-Authentication-F-66e27--to-sign-up-from-login-page-chromium/error-context.md
+]]>
+</failure>
 </testcase>
 <testcase name="User Authentication Flow › TC-008: User can login with remember me option checked" classname="auth.spec.js">
 <skipped>
 </skipped>
 </testcase>
 </testsuite>
-<testsuite name="signup.spec.js" timestamp="2026-05-18T17:22:52.510Z" hostname="chromium" tests="7" failures="0" skipped="7" time="0" errors="0">
+<testsuite name="signup.spec.js" timestamp="2026-05-19T16:49:01.511Z" hostname="chromium" tests="7" failures="0" skipped="7" time="0" errors="0">
 <testcase name="User Registration Flow › SC-001: User can successfully signup with valid data" classname="signup.spec.js">
 <skipped>
 </skipped>
@@ -63,7 +285,7 @@
 </skipped>
 </testcase>
 </testsuite>
-<testsuite name="auth.spec.js" timestamp="2026-05-18T17:22:52.510Z" hostname="firefox" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testsuite name="auth.spec.js" timestamp="2026-05-19T16:49:01.511Z" hostname="firefox" tests="8" failures="0" skipped="8" time="0" errors="0">
 <testcase name="User Authentication Flow › TC-001: Login succeeds with valid credentials" classname="auth.spec.js">
 <skipped>
 </skipped>
@@ -97,7 +319,7 @@
 </skipped>
 </testcase>
 </testsuite>
-<testsuite name="signup.spec.js" timestamp="2026-05-18T17:22:52.510Z" hostname="firefox" tests="7" failures="0" skipped="7" time="0" errors="0">
+<testsuite name="signup.spec.js" timestamp="2026-05-19T16:49:01.511Z" hostname="firefox" tests="7" failures="0" skipped="7" time="0" errors="0">
 <testcase name="User Registration Flow › SC-001: User can successfully signup with valid data" classname="signup.spec.js">
 <skipped>
 </skipped>
@@ -127,7 +349,7 @@
 </skipped>
 </testcase>
 </testsuite>
-<testsuite name="auth.spec.js" timestamp="2026-05-18T17:22:52.510Z" hostname="webkit" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testsuite name="auth.spec.js" timestamp="2026-05-19T16:49:01.511Z" hostname="webkit" tests="8" failures="0" skipped="8" time="0" errors="0">
 <testcase name="User Authentication Flow › TC-001: Login succeeds with valid credentials" classname="auth.spec.js">
 <skipped>
 </skipped>
@@ -161,7 +383,7 @@
 </skipped>
 </testcase>
 </testsuite>
-<testsuite name="signup.spec.js" timestamp="2026-05-18T17:22:52.510Z" hostname="webkit" tests="7" failures="0" skipped="7" time="0" errors="0">
+<testsuite name="signup.spec.js" timestamp="2026-05-19T16:49:01.511Z" hostname="webkit" tests="7" failures="0" skipped="7" time="0" errors="0">
 <testcase name="User Registration Flow › SC-001: User can successfully signup with valid data" classname="signup.spec.js">
 <skipped>
 </skipped>
